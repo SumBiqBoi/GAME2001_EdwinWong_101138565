@@ -114,14 +114,14 @@ public:
 		}
 		T* temp = new T[m_maxSize + m_growSize];
 		assert(temp != nullptr);
-		memcpy(temp, m_array, sizeof(T) * maxSize);
+		memcpy(temp, m_array, sizeof(T) * m_maxSize);
 		delete[] m_array;
 		m_array = temp;
 		temp = nullptr;
 		m_maxSize += m_growSize;
 		return true;
 	}
-protected:
+public:
 	T* m_array;
 	int m_maxSize;
 	int m_growSize;
