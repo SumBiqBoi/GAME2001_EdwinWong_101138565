@@ -27,7 +27,7 @@ public:
 		}
 	}
 
-	void push(T val)
+	virtual void push(T val)
 	{
 		assert(m_array != nullptr);
 		if (m_numElements >= m_maxSize)
@@ -116,7 +116,7 @@ public:
 		}
 		double m_growSizePower = pow(2, m_growSize);
 		T* temp = new T[m_maxSize + m_growSizePower];
-		std::cout << "growSize: " << m_growSizePower << std::endl;
+		//std::cout << "growSize: " << m_growSizePower << std::endl; // To check if growSize working properly
 		assert(temp != nullptr);
 		memcpy(temp, m_array, sizeof(T) * m_maxSize);
 		delete[] m_array;

@@ -7,7 +7,7 @@ using namespace std;
 
 int main()
 {
-	
+
 	UnorderedArray<int> uArray(5);
 	uArray.push(80);
 	uArray.push(64);
@@ -16,23 +16,23 @@ int main()
 	uArray.push(5);
 	//uArray.Expand(); for testing
 
-	cout << "Not sorted: ";
+	cout << "Not sorted(UnorderedArray): ";
 	for (int i = 0; i < uArray.GetSize(); i++)
 	{
 		cout << " " << uArray[i];
 	}
 	cout << endl;
 
-	OrderedArray<int> oArray(5);
+	OrderedArray<int> oArray(5, true);
+	oArray.push(98);
 	oArray.push(80);
 	oArray.push(80);
 	oArray.push(99);
 	oArray.push(76);
+	oArray.push(10);
 	oArray.push(5);
 
-	oArray.InsertionSort(true);
-
-	cout << "After sorting: ";
+	cout << "Ordered Array after sorting: ";
 	for (int i = 0; i < oArray.GetSize(); i++)
 	{
 		cout << " " << oArray[i];
