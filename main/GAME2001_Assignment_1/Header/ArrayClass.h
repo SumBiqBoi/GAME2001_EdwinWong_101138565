@@ -1,5 +1,7 @@
 #pragma once
 #include <cassert>
+#include <cmath>
+#include <iostream>
 
 template<class T>
 class ArrayClass
@@ -112,16 +114,18 @@ public:
 		{
 			return false;
 		}
-		T* temp = new T[m_maxSize + m_growSize];
+		double m_growSizePower = pow(2, m_growSize);
+		T* temp = new T[m_maxSize + m_growSizePower];
+		std::cout << "growSize: " << m_growSizePower << std::endl;
 		assert(temp != nullptr);
 		memcpy(temp, m_array, sizeof(T) * m_maxSize);
 		delete[] m_array;
 		m_array = temp;
 		temp = nullptr;
-		m_maxSize += m_growSize;
+		m_maxSize += m_growSizePower;
 		return true;
 	}
-public:
+protected:
 	T* m_array;
 	int m_maxSize;
 	int m_growSize;
