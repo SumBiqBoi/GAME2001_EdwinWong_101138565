@@ -2,7 +2,7 @@
 #include <cassert>
 
 template <class T>
-void SinglyLinkedList()
+class SinglyLinkedList
 {
 
-}
+};
