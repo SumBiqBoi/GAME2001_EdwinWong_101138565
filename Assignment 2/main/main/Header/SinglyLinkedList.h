@@ -32,7 +32,7 @@ public:
 		return lastNode;
 	}
 
-	void Pop(T newData)
+	void Pop()
 	{
 		assert(root != nullptr);
 
