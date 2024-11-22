@@ -53,8 +53,20 @@ public:
 		size = (size == 0 ? size : size - 1);
 	}
 
+	void Push(T newData)
+	{
+		LinkedListNode<T>* newNode = new LinkedListNode<T>;
+
+		assert(newNode != nullptr);
+		newNode->data = newData;
+		newNode->next = nullptr;
+
+		// Find position of where the priority needs to go
+		// Place the priority node in the correct spot
+	}
+
 private:
-	int = size;
+	int size;
 	LinkedListNode<T>* root;
 	LinkedListNode<T>* lastNode;
 };
