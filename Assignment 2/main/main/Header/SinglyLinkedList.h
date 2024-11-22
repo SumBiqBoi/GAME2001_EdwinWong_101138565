@@ -32,6 +32,27 @@ public:
 		return lastNode;
 	}
 
+	void Pop(T newData)
+	{
+		assert(root != nullptr);
+
+		if (root->next == nullptr)
+		{
+			delete root;
+			root = nullptr;
+			lastNode = nullptr;
+		}
+		else
+		{
+			LinkedListNode<T>* tempNode;
+			tempNode = root;
+			root = root->next;
+			delete tempNode;
+			tempNode = nullptr;
+		}
+		size = (size == 0 ? size : size - 1);
+	}
+
 private:
 	int = size;
 	LinkedListNode<T>* root;
