@@ -53,16 +53,32 @@ public:
 		size = (size == 0 ? size : size - 1);
 	}
 
-	void Push(T newData)
+	void Push(int newPriority, T newData)
 	{
 		LinkedListNode<T>* newNode = new LinkedListNode<T>;
+		LinkedListNode<T>* currentNode = root;
+		LinkedListNode<T>* tempNode = nullptr;
 
 		assert(newNode != nullptr);
 		newNode->data = newData;
 		newNode->next = nullptr;
+		newNode->priority = newPriority;
 
-		// Find position of where the priority needs to go
-		// Place the priority node in the correct spot
+		// Need to compare to nodes already in the linked list
+		while (newNode->priority > currentNode->priority && newNode != nullptr)
+		{
+			tempNode = currentNode;
+			currentNode = currentNode->next;
+		}
+		// Insert newNode here and move everything else down
+		tempNode->next = newNode;
+		newNode->next = current;
+		
+		if (current == nullptr)
+		{
+			lastNode = newNode;
+		}
+		size++;
 	}
 
 private:
