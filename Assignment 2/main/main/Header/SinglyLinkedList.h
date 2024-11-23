@@ -6,8 +6,44 @@ class LinkedListNode
 {
 public:
 	int priority;
-	LinkedListNode* data;
+	T data;
 	LinkedListNode* next;
+};
+
+template <class T>
+class LinkIterator 
+{
+public:
+	LinkIterator()
+	{
+		iteratingNode = nullptr;
+	}
+	~LinkIterator() {}
+
+	T& operator*()
+	{
+		assert(iteratingNode != nullptr);
+		return iteratingNode->data;
+	}
+	void operator=(LinkedListNode<T>* node)
+	{
+		iteratingNode = node;
+	}
+	void operator++(int)
+	{
+		assert(iteratingNode != nullptr);
+		iteratingNode = iteratingNode->next;
+	}
+	bool operator!=(LinkedListNode<T>* node)
+	{
+		return (iteratingNode != node);
+	}
+	bool operator==(LinkedListNode<T>* node)
+	{
+		return (iteratingNode == node);
+	}
+private:
+	LinkedListNode<T>* iteratingNode;
 };
 
 template <class T>
@@ -64,21 +100,40 @@ public:
 		newNode->next = nullptr;
 		newNode->priority = newPriority;
 
+		if (root == nullptr)
+		{
+			root = newNode;
+			lastNode = newNode;
+			size++;
+			return;
+		}
 		// Need to compare to nodes already in the linked list
-		while (newNode->priority > currentNode->priority && newNode != nullptr)
+		while (currentNode != nullptr && newNode->priority > currentNode->priority)
 		{
 			tempNode = currentNode;
 			currentNode = currentNode->next;
 		}
-		// Insert newNode here and move everything else down
-		tempNode->next = newNode;
-		newNode->next = current;
-		
-		if (current == nullptr)
+		if (tempNode == nullptr)
 		{
-			lastNode = newNode;
+			newNode->next = root;
+			root = newNode;
+		}
+		else
+		{
+			tempNode->next = newNode;
+			newNode->next = currentNode;
+
+			if (currentNode == nullptr)
+			{
+				lastNode = newNode;
+			}
 		}
 		size++;
+	}
+
+	void Front()
+	{
+		
 	}
 
 private:
