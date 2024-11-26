@@ -42,7 +42,13 @@ public:
 	{
 		return (iteratingNode == node);
 	}
+	int GetPriority()
+	{
+		iteratingPriority = iteratingNode->priority;
+		return iteratingPriority;
+	}
 private:
+	int iteratingPriority;
 	LinkedListNode<T>* iteratingNode;
 };
 
@@ -108,14 +114,8 @@ public:
 			return;
 		}
 		// Need to compare to nodes already in the linked list
-		while (currentNode != nullptr && newNode->priority > currentNode->priority)
+		while (currentNode != nullptr && newNode->priority >= currentNode->priority)
 		{
-			tempNode = currentNode;
-			currentNode = currentNode->next;
-		}
-		while (currentNode != nullptr && newNode->priority == currentNode->priority)
-		{
-			// Traverse to the end of the priority list and slot in the new push
 			tempNode = currentNode;
 			currentNode = currentNode->next;
 		}
