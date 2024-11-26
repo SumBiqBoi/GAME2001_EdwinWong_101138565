@@ -53,7 +53,7 @@ public:
 	LinkedList(): size(0), root(nullptr), lastNode(nullptr) {}
 	~LinkedList() {}
 
-	LinkedListNode<T>* Start()
+	LinkedListNode<T>* Front()
 	{
 		assert(root != nullptr);
 		return root;
@@ -113,6 +113,12 @@ public:
 			tempNode = currentNode;
 			currentNode = currentNode->next;
 		}
+		while (currentNode != nullptr && newNode->priority == currentNode->priority)
+		{
+			// Traverse to the end of the priority list and slot in the new push
+			tempNode = currentNode;
+			currentNode = currentNode->next;
+		}
 		if (tempNode == nullptr)
 		{
 			newNode->next = root;
@@ -129,11 +135,6 @@ public:
 			}
 		}
 		size++;
-	}
-
-	void Front()
-	{
-		
 	}
 
 private:
